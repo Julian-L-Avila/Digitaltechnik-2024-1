@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{karnaugh-map}
+
+\begin{document}
+\begin{karnaugh-map}[4][4][1][$D$][$C$][$B$][$A$]
+	\maxterms{1,4,11,13}
+	\autoterms[1]
+	\implicant{1}{1}
+	\implicant{4}{4}
+	\implicant{11}{11}
+	\implicant{13}{13}
+\end{karnaugh-map}
+
+\end{document}

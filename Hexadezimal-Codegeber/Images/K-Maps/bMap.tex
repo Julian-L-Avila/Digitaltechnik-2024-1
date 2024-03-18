@@ -1,0 +1,20 @@
+\documentclass{standalone}
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{karnaugh-map}
+
+\begin{document}
+\begin{karnaugh-map}[4][4][1][$D$][$C$][$B$][$A$]
+	\minterms{0,1,2,3,4,7,8,9,10,13}
+	\autoterms[0]
+	\implicant{0}{2}
+	\implicant{0}{4}
+	\implicant{3}{7}
+	\implicant{13}{9}
+	\implicantcorner
+\end{karnaugh-map}
+
+\end{document}

@@ -1,0 +1,21 @@
+\documentclass{standalone}
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepackage{karnaugh-map}
+
+\begin{document}
+\begin{karnaugh-map}[4][4][1][$D$][$C$][$B$][$A$]
+	\minterms{0,2,3,5,6,8,11,12,13,14}
+	\autoterms[0]
+	\implicant{3}{2}
+	\implicant{12}{13}
+	\implicant{5}{13}
+	\implicant{6}{14}
+	\implicantedge{0}{0}{8}{8}
+	\implicantedge{3}{3}{11}{11}
+\end{karnaugh-map}
+
+\end{document}
