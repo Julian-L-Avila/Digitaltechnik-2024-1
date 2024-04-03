@@ -1,0 +1,211 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage{hyperref, url}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{fancyhdr, last page}
+\usepackage{siunitx}
+\usepackage[margin=2.54cm]{geometry}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[affil-sl]{authblk}
+\usepackage{anyfontsize}
+\usepackage{csquotes}
+\usepackage{float}
+\usepackage{tabularx, ragged2e, booktabs}
+\usepackage{verbatim}
+\usepackage[spanish]{cleveref}
+
+\newenvironment{problem}[2][Problema]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1}\hskip \labelsep {\bfseries #2.}]}{\end{trivlist}}
+
+\newenvironment{solution}[1][Solución]{\begin{trivlist}
+\item[\hskip \labelsep {\bfseries #1:}]}{\end{trivlist}}
+
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    pdftitle={Workshop01-Digitaltechnik}
+}
+\urlstyle{same}
+\renewcommand\Affilfont{\fontsize{8}{8}}
+\makeatletter
+\renewcommand\AB@affilsepx{, \protect\Affilfont}
+\makeatother
+
+\title{\textbf{Taller 01\\ \small{Electrónica Digital}}}
+
+\author[1]{Julian Avila}
+\affil[1]{20212107030}
+\date{3 de Abril 2024}
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+\lhead{Taller 01 - Electrónica Digital}
+\rhead{Julian Avila}
+\rfoot{Pagina \thepage\ de \pageref{LastPage}}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{fancy}
+\hrule
+
+\begin{problem}{1}
+Dada la siguiente igualdad: 
+
+$$(100)_{10} = (400)_{b}$$
+
+Determinar el valor de la base $b$ y el valor de $(104)_{10}$ en la base $b$.
+\end{problem}
+
+\begin{solution}
+\textbf{a.}
+\begin{equation*}
+    10^{2} = 4b^2
+\end{equation*}
+\begin{equation*}
+    \boxed{
+        \therefore b = 5
+    }
+\end{equation*}
+
+\textbf{b.}
+\begin{align*}
+    \frac{104}{5} & = 20(5) + 4 \\
+    \frac{20}{5}  & = 4(5) \\
+    \implies (104)_{10}    & = 4(5)^{2} + 0(5) + 4(5)^0
+\end{align*}
+
+\begin{equation*}
+    \boxed{
+        \therefore (104)_{10} = (404)_{5}
+    }
+\end{equation*}
+\end{solution}
+
+
+\begin{problem}{2}
+Dado la siguiente igualdad:
+
+$$ (174)_{10} = (450)_{b} $$
+
+Determinar el valor de la base $b$ y el valor de $(104)_{10}$ en la base $b$.
+\end{problem}
+
+\begin{solution}
+\textbf{a.}
+\begin{align*}
+    10^{2} + 7(10) + 4                 & = 4b^{2} + 5b \\
+    b^{2} + \frac{5}{4}b               & = \frac{174}{4} \\
+    \left( b + \frac{5}{8} \right)^{2} & = \frac{2809}{64} \\
+    b + \frac{5}{8}                    & = \frac{53}{8} \\
+\end{align*}
+
+\begin{equation*}
+    \boxed{
+        \therefore b = 6
+    }
+\end{equation*}
+
+\textbf{b.}
+\begin{align*}
+    \frac{104}{6}       & = 17(6) + 2 \\
+    \frac{17}{6}        & = 2(6) + 5 \\
+    \implies (104)_{10} & = 2(6)^{2} + 5(6) + 2
+\end{align*}
+
+\begin{equation*}
+    \boxed{
+        \therefore (104)_{10} = (252)_{6}
+    }
+\end{equation*}
+\end{solution}
+
+
+\begin{problem}{3}
+Decodificar el siguiente mensaje codificado en ASCII y escribir el mensaje en hexadecimal.
+
+\begin{align*}
+    &\texttt{1001000 1100101 1101100 1101100 1101111 0101110 0100000 1001000 1101111 1110111} \\ 
+    &\texttt{0100000 1100001 1110010 1100101 0100000 1111001 1101111 1110101 0111111}
+\end{align*}
+\end{problem}
+
+\begin{solution}{\textbf{a} Decodificación:}
+\begin{itemize}
+    \item $(1001000)_{2} = 2^{6} + 2^{3} = (72)_{10} = \text{H}$ 
+    \item $(1100101)_{2} = 2^{6} + 2^{5} + 2^{2} + 1 = (101)_{10} = \text{e}$
+    \item $(1101100)_{2} = 2^{6} + 2^{5} + 2^{3} + 2^{2} = (108)_{10} = \text{l}$
+    \item $(1101111)_{2} = 2^{6} + 2^{5} + 2^{3} + 2^{2} + 2 + 1 = (111)_{10} = \text{o}$
+    \item $(0101110)_{2} = 2^{5} + 2^{3} + 2^{2} + 2 = (46)_{10} = \text{.}$
+    \item $(0100000)_{2} = 2^{5} = (32)_{10} = \text{ (space)}$
+    \item $(1110111)_{2} = 2^{6} + 2^{5} + 2^{4} + 2^{2} + 2 + 1 = (119)_{10} = \text{w}$
+    \item $(1100001)_{2} = 2^{6} + 2^{5} + 1 = (97)_{10} = \text{a}$
+    \item $(1110010)_{2} = 2^{6} + 2^{5} + 2^{4} + 2 = (114)_{10} = \text{r}$
+    \item $(1111001)_{2} = 2^{6} + 2^{5} + 2^{4} + 2^{3} + 1 = (121)_{10} = \text{y}$
+    \item $(1110101)_{2} = 2^{6} + 2^{5} + 2^{4} + 2^{2} + 1 = (117)_{10} = \text{u}$
+    \item $(0111111)_{2} = 2^{5} + 2^{4} + 2^{3} + 2^{2} + 1 = (63)_{10} = \text{?}$
+\end{itemize}
+
+\begin{center}
+\framebox[1.1\width]{Mensaje: Hello. How are you?}
+\end{center}
+
+\text{b.} Codificación hexadecimal:
+\begin{itemize}
+    \item  $ (72)_{10}  = 4(16) + 8 = (48)_{16}$
+    \item  $ (101)_{10} = 6(16) + 5 = (65)_{16}$
+    \item  $ (108)_{10} = 6(16) + 12 = (6C)_{16}$
+    \item  $ (111)_{10} = 6(16) + 15 = (6F)_{16}$
+    \item  $ (46)_{10}  = 2(16) + 14 = (2E)_{16}$
+    \item  $ (32)_{10}  = 2(16) = (20)_{16}$
+    \item  $ (119)_{10} = 7(16) + 7 = (77)_{16}$
+    \item  $ (97)_{10}  = 6(16) + 1 = (61)_{16}$
+    \item  $ (114)_{10} = 7(16) + 2 = (72)_{16}$
+    \item  $ (121)_{10} = 7(16) + 9 = (79)_{16}$
+    \item  $ (117)_{10} = 7(16) + 5 = (75)_{16}$
+    \item  $ (63)_{10}  = 3(16) + 15 = (3F)_{16}$
+\end{itemize}
+
+\begin{center}
+\framebox[1.1\width]{Mensaje (Hexadecimal): 48 65 6C 6C 6F 2E 20 48 6F 77 20 61 72 65 20 79 6F 75 3F}
+\end{center}
+\end{solution}
+
+
+\begin{problem}{4}
+    Hallar analíticamente el valor de $b$ que satisfaga la igualdad. Las operaciones aritméticas deben ser realizadas es una base diferente a decimal.
+    
+    $$(179)_{b} = (666)_{7} + (1023)_{4} $$
+\end{problem}
+
+\begin{solution}
+    \begin{align*}
+        (1023)_{4} &= 4^{3} + 2(4) + 3\\
+         &= (75)_{10}  \\
+         &= 7^2 + 3(7) + 5 \\
+         &= (135)_{7}
+    \end{align*}
+
+    \begin{align*}
+        (179)_{b} &= (666)_7 + (135)_{7} \\
+        &= (1134)_7 \\
+        b^{2} + 7b + 9 &= 7^{3} + 7^{2} + 3(7) + 4 \\
+        b^{2} + 7b &= 408 \\
+        \left(b + \frac{7}{2}\right)^{2} &= \frac{1681}{4} \\
+        b + \frac{7}{2} &= \frac{41}{2} 
+    \end{align*}
+
+    \begin{equation*}
+        \boxed{
+            \therefore b = 17
+        }
+    \end{equation*}
+\end{solution}
+
+\end{document}
