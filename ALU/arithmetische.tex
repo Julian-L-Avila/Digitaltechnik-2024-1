@@ -66,7 +66,7 @@
 
 	\node (0s) [shift={(0, .75)}, ground, draw, rotate=180] at (IMUXY1) { };
 	\node (1s) [ocirc, shift={(0.5, 0)}] at (0s) { };
-	\node [font=\scriptsize, right of=1s, shift={(-0.5, 0)}] {$\qty{5}{V}$}; 
+	\node [font=\scriptsize, right of=1s, shift={(-0.5, 0)}] {$\qty{5}{V}$};
 
 	\draw [shorten >=8] (S0)  -- ++(0, -3.5) -- ++(-19, 0) |- (IMUXS);
 
@@ -203,7 +203,7 @@
 
 	\node (0a) [shift={(0, .75)}, ground, draw, rotate=180] at (MUXY1) { };
 	\node (1a) [ocirc, shift={(0.5, 0)}] at (0a) { };
-	\node [font=\scriptsize, right of=1a, shift={(-0.5, 0)}] {$\qty{5}{V}$}; 
+	\node [font=\scriptsize, right of=1a, shift={(-0.5, 0)}] {$\qty{5}{V}$};
 
 	\draw [shorten >=0.5] (0a) node[circ] (0an0) { } -| (MUXY3);
 	\draw [shorten >=0.5] (0a) -- (MUXY1);
@@ -214,7 +214,7 @@
 	\draw [shorten >=.5] (B1) ++(0, -1.5) node[circ] { } -| (MUXX1);
 	\draw [shorten >=.5] (B2) ++(0, -2) node[circ] { } -| (MUXX2);
 	\draw [shorten >=.5] (B3) ++(0, -2.5) node[circ] { } -| (MUXX3);
-	
+
 	\draw [shorten <=8] (MUXS) -- ++(-1.5, 0) -- ++(0, 6.5) node[circ] { };
 
 	% Full Adder (3)
@@ -292,7 +292,7 @@
 
 	\draw [shorten >=8] (S1) |- (MUX2S);
 
-	\draw [shorten <=0.5] (MUX2Z) -- ++(0, -1) node[font=\scriptsize, below] {$Z_{a}$};
+	\draw [shorten <=0.5] (MUX2Z) -- ++(0, -1) node[font=\scriptsize, below] {$Z_{\text{a}}$};
 
 \end{tikzpicture}
 \end{document}
