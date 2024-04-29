@@ -1,0 +1,90 @@
+\documentclass{standalone}
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usetikzlibrary{patterns}
+\usepackage{scalerel}
+\usepackage{pict2e}
+\usepackage{tkz-euclide}
+\usetikzlibrary{calc}
+\usetikzlibrary{arrows.meta}
+\usetikzlibrary{shadows}
+\usetikzlibrary{external}
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{shapes.geometric}
+\usetikzlibrary{arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,calc}
+\usepackage{pgfplots}
+\pgfplotsset{compat=newest}
+\usepgfplotslibrary{statistics}
+\usepgfplotslibrary{fillbetween}
+
+\begin{document}
+\begin{tikzpicture}
+	%\draw [help lines, step=0.1, gray] (0,0) grid (10, -10);
+	%\draw [help lines, blue] (0,0) grid (10, -10);
+
+	\node (A) at (0,0) {$A$};
+
+	\node (B) [right of=A] {$B$};
+
+	\node (S3) [right of=B, shift={(4.0, 0.0)}] {$S_3$};
+
+	%Arithmetic
+
+	\node (Arithmetic) [below of=A, shift={(-.5, -1)}] { };
+	\draw [black, thin] (Arithmetic) rectangle ++(2, -2);
+
+	\node (ArithmeticA) [font=\scriptsize, right of=Arithmetic, shift={(-.5,-.25)}] {$A$};
+	\node (ArithmeticB) [font=\scriptsize, right of=ArithmeticA] {$B$};
+
+	\node (ArithmeticZ) [font=\scriptsize, below of=ArithmeticA, shift={(.5, -.5)}] {$Z$};
+
+	\node (ArithmeticName) [above of=ArithmeticZ, shift={(0, -.25)}] {Arithmetic};
+
+	%Logic
+
+	\node (Logic) [right of=Arithmetic, shift={(2, 0)}] { };
+	\draw [black, thin] (Logic) rectangle ++(2, -2);
+
+	\node (LogicA) [font=\scriptsize, right of=Logic, shift={(-.5,-.25)}] {$A$};
+	\node (LogicB) [font=\scriptsize, right of=LogicA] {$B$};
+
+	\node (LogicZ) [font=\scriptsize, below of=LogicA, shift={(.5, -.5)}] {$Z$};
+
+	\node (LogicName) [above of=LogicZ, shift={(0, -.25)}] {Logic};
+
+	% Paths
+	\draw [shorten >=1.0](A.south) -- (ArithmeticA.north);
+	\draw [shorten >=1.0](B.south) -- (ArithmeticB.north);
+
+	\draw [shorten >=1.0] (A) ++(0, -1.5) node[ocirc] { } -| (LogicA.north);
+
+	\draw [shorten >=1.0] (B) ++ (0, -1.0) node[ocirc] { } -| (LogicB.north);
+
+	% MUX 1
+
+	\node (MUX1) [below of=ArithmeticZ, shift={(0.5, -0.25)}] { };
+	\draw [black, thin] (MUX1) rectangle ++(2, -2);
+
+	\node (MUX1U1) [font=\scriptsize, right of=MUX1, shift={(-0.5, -0.25)}] {$U_1$};
+	\node (MUX1U2) [font=\scriptsize, right of=MUX1U1] {$U_2$};
+
+	\node (MUX1Z) [font=\scriptsize, below of=MUX1U1, shift={(0.5, -0.5)}] {$Z$};
+	\node (MUX1Name) [above of=MUX1Z, shift={(0, -0.25)}] {MUX};
+
+	\node (MUX1S) [font=\scriptsize, right of=MUX1Name, shift={(-0.25, 0)}] {$S$};
+
+	% % Paths 2
+
+	\draw [shorten <=1.1, shorten >=0.8] (ArithmeticZ.south) -- ++(0, -0.5) -| (MUX1U1.north);
+	\draw [shorten <=1.1, shorten >=0.8] (LogicZ.south) -- ++(0, -0.5) -| (MUX1U2.north);
+
+	\draw [shorten >=0.8] (S3.south) |- (MUX1S.east);
+
+	\draw [shorten <=1.1] (MUX1Z.south) -- ++(0, -1.0) node[font=\scriptsize, below] {$Z$};
+
+	\end{tikzpicture}
+\end{document}
