@@ -24,7 +24,7 @@
 \begin{document}
 \begin{tikzpicture}
 	%\draw [help lines, step=0.1, gray] (0,0) grid (10, -10);
-	\draw [help lines, blue] (0,0) grid (14, -10);
+	%\draw [help lines, blue] (0,0) grid (14, -10);
 
 	\node (A) at (0,0) {$A$};
 
@@ -79,6 +79,74 @@
 	\node (NotZ) [font=\scriptsize, below of=NotA, shift={(0, -.5)}] {$Z$};
 
 	\node (NotName) [above of=NotZ, shift={(0, -.25)}] {NOT};
+
+	% Paths
+	\draw [shorten >=1.0](A.south) -- (AndA.north);
+	\draw [shorten >=1.0](B.south) -- (AndB.north);
+
+	\draw [shorten >=1.0] (A) ++(0, -1.5) node[ocirc] { } -| (NotA.north);
+	\draw [shorten >=1.0] (OrA) ++(0, 0.75) node[ocirc] { } -- (OrA.north);
+	\draw [shorten >=1.0] (XorA) ++(0, 0.75) node[ocirc] { } -- (XorA.north);
+
+	\draw [shorten >=1.0] (B) ++ (0, -1.0) node[ocirc] { } -| (XorB.north);
+	\draw [shorten >=1.0] (OrB) ++(0, 1.25) node[ocirc] { } -- (OrB.north);
+
+	% MUX 1
+
+	\node (MUX1) [below of=AndZ, shift={(0.5, -0.25)}] { };
+	\draw [black, thin] (MUX1) rectangle ++(2, -2);
+
+	\node (MUX1U1) [font=\scriptsize, right of=MUX1, shift={(-0.5, -0.25)}] {$U_1$};
+	\node (MUX1U2) [font=\scriptsize, right of=MUX1U1] {$U_2$};
+
+	\node (MUX1Z) [font=\scriptsize, below of=MUX1U1, shift={(0.5, -0.5)}] {$Z$};
+	\node (MUX1Name) [above of=MUX1Z, shift={(0, -0.25)}] {MUX};
+
+	\node (MUX1S) [font=\scriptsize, right of=MUX1Name, shift={(-0.25, 0)}] {$S$};
+
+	% MUX 2
+
+	\node (MUX2) [below of=XorZ, shift={(0.5, -0.25)}] { };
+	\draw [black, thin] (MUX2) rectangle ++(2, -2);
+
+	\node (MUX2U1) [font=\scriptsize, right of=MUX2, shift={(-0.5, -0.25)}] {$U_1$};
+	\node (MUX2U2) [font=\scriptsize, right of=MUX2U1] {$U_2$};
+
+	\node (MUX2Z) [font=\scriptsize, below of=MUX2U1, shift={(0.5, -0.5)}] {$Z$};
+	\node (MUX2Name) [above of=MUX2Z, shift={(0, -0.25)}] {MUX};
+
+	\node (MUX2S) [font=\scriptsize, right of=MUX2Name, shift={(-0.25, 0)}] {$S$};
+
+	% Paths 2
+
+	\draw [shorten <=1.1, shorten >=0.8] (AndZ.south) -- ++(0, -0.5) -| (MUX1U1.north);
+	\draw [shorten <=1.1, shorten >=0.8] (OrZ.south) -- ++(0, -0.5) -| (MUX1U2.north);
+	\draw [shorten <=1.1, shorten >=0.8] (XorZ.south) -- ++(0, -0.5) -| (MUX2U1.north);
+	\draw [shorten <=1.1, shorten >=0.8] (NotZ.south) -- ++(0, -0.5) -| (MUX2U2.north);
+
+	\draw [shorten >=0.8] (S0.south) |- (MUX2S.east);
+	\draw [shorten >=0.8] (S0.south) -- ++(0, -0.5) node[ocirc] { } -- ++(-7.5, 0.0) |- (MUX1S.east);
+
+	% MUX 3
+
+	\node (MUX3) [below of=MUX1Z, shift={(2.5, -0.25)}] { };
+	\draw [black, thin] (MUX3) rectangle ++(2, -2);
+
+	\node (MUX3U1) [font=\scriptsize, right of=MUX3, shift={(-0.5, -0.25)}] {$U_1$};
+	\node (MUX3U2) [font=\scriptsize, right of=MUX3U1] {$U_2$};
+
+	\node (MUX3Z) [font=\scriptsize, below of=MUX3U1, shift={(0.5, -0.5)}] {$Z$};
+	\node (MUX3Name) [above of=MUX3Z, shift={(0, -0.25)}] {MUX};
+
+	\node (MUX3S) [font=\scriptsize, right of=MUX3Name, shift={(-0.25, 0)}] {$S$};
+
+	% Path 3
+
+	\draw [shorten <=1.1, shorten >=0.8] (MUX1Z.south) -- ++(0, -0.5) -| (MUX3U1.north);
+	\draw [shorten <=1.1, shorten >=0.8] (MUX2Z.south) -- ++(0, -0.5) -| (MUX3U2.north);
+	\draw [shorten >=0.8] (S1.south) |- (MUX3S.east);
+
+	\draw [shorten <=1.1] (MUX3Z.south) -- ++(0, -1.0) node[font=\scriptsize, below] {$Z_{\text{l}}$};
 
 	\end{tikzpicture}
 \end{document}
