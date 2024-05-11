@@ -1,0 +1,18 @@
+\documentclass{standalone}
+\usepackage{amsmath, amsfonts, amsthm}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{karnaugh-map}
+
+\begin{document}
+\begin{karnaugh-map}[4][4][1][$Z_1$][$Z_2$][$x$][$Z_0$]
+	\minterms{1,3,13,15}
+	\indeterminants{0,2,4,6,8,10,12,14}
+	\autoterms[0]
+	\implicant{0}{2}
+	\implicant{12}{14}
+\end{karnaugh-map}
+\end{document}
