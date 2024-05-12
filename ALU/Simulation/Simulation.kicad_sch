@@ -1072,7 +1072,7 @@
   (symbol (lib_id "Device:LED") (at 91.44 25.4 180) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 3aa836fe-5067-4e7b-8606-0c2c32c78734)
-    (property "Reference" "D?" (id 0) (at 93.0275 17.78 0))
+    (property "Reference" "D1" (id 0) (at 93.0275 17.78 0))
     (property "Value" "LED" (id 1) (at 93.0275 20.32 0))
     (property "Footprint" "" (id 2) (at 91.44 25.4 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1087,7 +1087,7 @@
   (symbol (lib_id "Device:LED") (at 91.44 30.48 180) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 4ce2d8e4-fdf2-4ddb-9484-341159338b42)
-    (property "Reference" "D?" (id 0) (at 93.0275 22.86 0))
+    (property "Reference" "D2" (id 0) (at 93.0275 22.86 0))
     (property "Value" "LED" (id 1) (at 93.0275 25.4 0))
     (property "Footprint" "" (id 2) (at 91.44 30.48 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1121,7 +1121,7 @@
   (symbol (lib_id "Device:LED") (at 91.44 40.64 180) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid 5c2ff34b-c7c8-4e3f-8f38-fdd9fbee5513)
-    (property "Reference" "D?" (id 0) (at 93.0275 33.02 0))
+    (property "Reference" "D4" (id 0) (at 93.0275 33.02 0))
     (property "Value" "LED" (id 1) (at 93.0275 35.56 0))
     (property "Footprint" "" (id 2) (at 91.44 40.64 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1172,7 +1172,7 @@
   (symbol (lib_id "Device:LED") (at 91.44 35.56 180) (unit 1)
     (in_bom yes) (on_board yes) (fields_autoplaced)
     (uuid be7bbeda-6f43-4ea3-b62d-b60b842fcfc1)
-    (property "Reference" "D?" (id 0) (at 93.0275 27.94 0))
+    (property "Reference" "D3" (id 0) (at 93.0275 27.94 0))
     (property "Value" "LED" (id 1) (at 93.0275 30.48 0))
     (property "Footprint" "" (id 2) (at 91.44 35.56 0)
       (effects (font (size 1.27 1.27)) hide)
@@ -1257,16 +1257,16 @@
       (reference "#PWR?") (unit 1) (value "GND") (footprint "")
     )
     (path "/3aa836fe-5067-4e7b-8606-0c2c32c78734"
-      (reference "D?") (unit 1) (value "LED") (footprint "")
+      (reference "D1") (unit 1) (value "LED") (footprint "")
     )
     (path "/4ce2d8e4-fdf2-4ddb-9484-341159338b42"
-      (reference "D?") (unit 1) (value "LED") (footprint "")
-    )
-    (path "/5c2ff34b-c7c8-4e3f-8f38-fdd9fbee5513"
-      (reference "D?") (unit 1) (value "LED") (footprint "")
+      (reference "D2") (unit 1) (value "LED") (footprint "")
     )
     (path "/be7bbeda-6f43-4ea3-b62d-b60b842fcfc1"
-      (reference "D?") (unit 1) (value "LED") (footprint "")
+      (reference "D3") (unit 1) (value "LED") (footprint "")
+    )
+    (path "/5c2ff34b-c7c8-4e3f-8f38-fdd9fbee5513"
+      (reference "D4") (unit 1) (value "LED") (footprint "")
     )
     (path "/c93aa7fc-75c1-4e34-818e-66ed4d7f353a"
       (reference "SW_1") (unit 1) (value "SW_DIP_x08") (footprint "")
