@@ -73,38 +73,45 @@
 
 \section{Objetivos}
 \begin{itemize}
-    \item Desarrollar una unidad aritmético-lógica para dos números de 4-bits mediante lógica combinacional.
-     \item Visualizar usando LEDs el resultado de la correspondiente operación de la ALU.
+    \item Diseñar una unidad aritmético-lógica para dos números de 4-bits mediante lógica combinacional.
+    \item Visualizar usando LEDs el resultado de la correspondiente operación de la ALU.
 \end{itemize}
 
 \section{Diseño y solución del problema}
-Se plantea realizar una unidad aritmético-lógica (ALU) para números de 4 bits. Para la parte lógica, el circuito realizará las siguientes operaciones:
+Se plantea realizar una unidad aritmético-lógica (ALU) para dos números de 4 bits.
+Para la parte lógica, el circuito realizará las siguientes operaciones:
 
-\begin{align}
-A+B \\
-A-B \\
-\bar{A} \\
-A \oplus B \\
-\end{align}
+\begin{gather}
+    A \land B \\
+    A \lor B \\
+    A \oplus B \\
+    \bar{A}
+\end{gather}
 
 En la parte aritmética se realizan las siguientes operaciones:
-\begin{align}
-A+B \\
-A-B \\
-A+1 \\
-A-1 \\
-\end{align}
+\begin{gather}
+    A+B \\
+    A-B \\
+    A+1 \\
+    A-1
+\end{gather}
 
-Para poder generar las diferentes opciones que tiene la ALU se hizo uso de MUXs, de esta forma el usuario puede escoger qué operación desea realizar entre los dos números ingresados.\cite{wakerly-1989}
+Para poder generar las diferentes opciones que tiene la ALU se hizo uso de MUXs,
+de esta forma el usuario puede escoger qué operación desea visualizar entre los números ingresados.\cite{wakerly-1989}
 
-Para la parte aritmética, se utilizan tres MUX, dos de los cuales tienen la función de escoger si $A$ se va a operar con $B$ o con 1. El tercer MUX tiene la función de escoger si se realizará suma o resta aritmética de los números escogidos.
+Para la parte aritmética, se utiliza un IMUX y dos MUX, el IMUX y uno de las MUX
+tienen la función de escoger si $A$ se va a operar con $B$ o con 1.
+El segundo MUX tiene la función de escoger si se visualiza suma o resta aritmética de los números escogidos.
 
-Para la parte lógica se utilizan también tres MUX, de los cuales dos se encargan de filtrar si se desea hacer las operaciones de suma o resta y $\bar{A}$ o $A \oplus B$, para el tercer MUX, se escoge si se desea ver la parte de la suma y la resta (según se haya escogido) o la parte de $\bar{A}$ y $A \oplus B$. En el caso de las operaciones lógicas, se realizan mediante la comparación de cada bit.
+Para la parte lógica se utilizan tres MUX, los cuales se encargan de filtrar que
+operación se va a visualizar ya sea $A \land B$, $A \lor B$, $\bar{A}$ o $A \oplus B$.
+En el caso de las operaciones lógicas, se realizan mediante comparación bit a bit de ambos inputs.
 
-Finalmente, para el resultado que se mostrará en los LEDs, se utiliza un MUX final el cual dará la opción de si se desea obtener la operación aritmética escogida o la lógica.
+Finalmente, para el resultado que se visualice en 5 LEDs, se utiliza un MUX
+el cual permite eligir entre el resultado de la operación aritmética o la lógica.
 
 \section{Diagrama de compuertas Lógicas y Circuito}
-\subsection{Sub-unidad Aritmética}
+\subsection{Sub-Unidad Aritmética}
 \begin{figure}[h]
     \centering
     \includegraphics[width=\linewidth]{./Images/arithmetische.pdf}
@@ -112,9 +119,17 @@ Finalmente, para el resultado que se mostrará en los LEDs, se utiliza un MUX fi
     \label{fig:arithmetic-diagram}
 \end{figure}
 
-Como primer sub-unidad se tiene la parte aritmética donde se realizan las operaciones entre dos números de 4 bits que ingresan como señales al sistema. La resta entre $A$ y $B$ o el decrementar $A$ se realiza con la suma del complemento a 2 del valor a restar, por ello se utilizan 2 Full Adder para esta parte y el numero resultado tiene un total de 5-bits donde el de mayor significancia indica el signo del resultado. Para la suma, dependiendo si se desea sumar $A$ con $B$ o solo incrementar $A$, se utiliza un Full Adder, el resultado es un numero de 5-bits mayor a 0, por ello el bit de mayor significancia representa $2^4$.
+Como primer sub-unidad se tiene la parte aritmética, en esta se realizan las operaciones
+entre dos números de 4 bits que ingresan como input. La resta entre $A$ y $B$
+o el decrementar $A$ se realiza con la suma del complemento a 2 del sustraendo,
+por ello se utilizan 2 Full Adder, el primero para el complemento a dos y la suma,
+y el segundo permite corregir el resultado si el valor real es menor a 0,
+complementando a 2 el resultado del primer Full Adder.
+El resultado se presenta en 5 LEDs, donde el de mayor significancia funciona como indicador de signo.
 
-Ambos resultados son filtrados por un multiplexor que deja el paso de el valor la suma o el valor de la resta.
+Para la suma, dependiendo si se le desea sumar $B$ o $1$ a $A$, se utiliza un Full Adder,
+el resultado es un numero de 5-bits mayor a 0, por ello el bit de mayor significancia
+presenta un peso de $2^4$.
 
 \subsection{Sub-unidad Logica}
 \begin{figure}[h]
@@ -124,17 +139,15 @@ Ambos resultados son filtrados por un multiplexor que deja el paso de el valor l
     \label{fig:logic-diagram}
 \end{figure}
 
-La segunda sub-unidad es la parte lógica, se toman las entradas de 4-bits y sin comparadas por cada operación bit a bit, la señal de salida de la operación pasan a un multiplexor para dar como resultado una de estas.
+La segunda sub-unidad es la parte lógica, se toman las entradas de 4-bits y son
+comparadas por cada operación bit a bit. La única operación unitaria es $\bar{A}$.
 
 \subsection{Unidad Aritmético-lógica}
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=\linewidth]{./Images/alu.pdf}
-    \caption{Diagrama de la ALU.}
-    \label{fig:alu-diagram}
-\end{figure}
 
-La unidad completa toma las salidas de las dos sub-unidades y filtra el resultado deseado según el la señal de entrada $S_2$ para ser mostrado por 5 LEDs. La siguiente tabla muestra el resultado mostrado según el estado de las señales de control $S_0, S_1, S_2$:
+La unidad completa toma las salidas de las dos sub-unidades y filtra el resultado
+deseado según la señal de entrada $S_2$ para ser mostrado por 5 LEDs.
+La siguiente tabla muestra el resultado mostrado según el estado de las señales
+de control $S_0, S_1, S_2$:
 
 \begin{table}[htbp!]
     \centering
@@ -157,8 +170,15 @@ La unidad completa toma las salidas de las dos sub-unidades y filtra el resultad
     \label{tab:Zvalue}
 \end{table}
 
-\subsection{Fotos del circuito}
 \begin{figure}[h]
+    \centering
+    \includegraphics[width=\linewidth]{./Images/alu.pdf}
+    \caption{Diagrama de la ALU.}
+    \label{fig:alu-diagram}
+\end{figure}
+
+\subsection{Fotos del circuito}
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{./Images/WhatsApp Image 2024-05-11 at 18.46.47.jpeg}
     \caption{Foto del montaje del circuito.}
@@ -166,7 +186,10 @@ La unidad completa toma las salidas de las dos sub-unidades y filtra el resultad
 \end{figure}
 
 \section{Conclusiones}
-Se logró el montaje de la ALU mediante compuertas lógicas y MUXs. Esta ALU finalmente muestra la operación seleccionada a través de LEDs, la cual puede ser tanto lógica como aritmética, aplicada a dos números de 4 bits.
+Se diseño una unidad aritmético-lógica para dos numeros de 4-bits a partir del
+uso de compuertas logicas, y logica combinacional utilizando un total de 6
+multiplexores, un multiplexor inversor, 3 Full Adders, 5 compuertas NOT,
+4 compuertas AND, 4 compuertas OR, 8 compuertas XOR.
 
 \printbibliography
 \nocite{*}
